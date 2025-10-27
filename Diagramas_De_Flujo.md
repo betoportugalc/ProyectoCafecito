@@ -3,35 +3,44 @@
 ```mermaid
 flowchart TD
     A[Inicio] --> B[Cliente navega por la carta de productos]
-    B --> C{¿Selecciona un producto?}
+    B --> C{¿Selecciona producto?}
     C -->|No| B
-    C -->|Sí| D[Agrega producto a su pedido]
+    C -->|Sí| D[Cliente arma su pedido]
     D --> E{¿Confirmar pedido?}
     E -->|No| B
-    E -->|Sí| F[Cliente comunica su pedido al mozo]
-    F --> G[Mozo recibe el pedido del cliente]
-    G --> H[Verifica disponibilidad de productos]
-    H --> I{¿Modificar pedido?}
-    I -->|Sí| J[Actualiza pedido en el sistema]
-    I -->|No| K[Confirma pedido]
-    J --> K
-    K --> L[Envía pedido confirmado a la cocina]
-    L --> M[Pedido visible en la pantalla de cocina]
-    M --> N[Fin]
+    E -->|Sí| F[Cliente comunica pedido al mozo]
+    F --> G[Mozo recibe pedido y verifica disponibilidad]
+    G --> H{¿Faltantes?}
+    H -->|Sí| I[Ofrecer alternativas / Ajustar pedido]
+    I --> J{¿Cliente acepta?}
+    J -->|No| K[Pedido cancelado] --> Z[Fin]
+    J -->|Sí| G
+    H -->|No| L[Mozo registra pedido en el sistema]
+    L --> M[Mozo confirma y envía pedido a cocina]
+    M --> N[Pedido visible en pantalla de cocina]
+    N --> O[Fin]
+
 ```
-## Modulo 3: Confirmación y Pago
+
+## Modulo 4: Confirmación y Recepcion del Pago
+
 ```mermaid
 flowchart TD
-    A[Inicio] --> B[Selecciona método de pago]
-    B --> C{¿Pago por efectivo, Yape o Plin?}
-    C -->|Efectivo| D[Entrega efectivo al mozo o caja]
-    C -->|Yape o Plin| E[Escanea código QR / envía pago]
-    D --> F[POS registra pago recibido]
-    E --> F[POS recibe confirmación de pago digital]
-    F --> G{¿Pago completado?}
-    G -->|Sí| H[Emitir comprobante]
-    G -->|No| B
-    H --> I[Fin]
+    A[Inicio: Cliente solicita la cuenta] --> B[Mozo consulta total en POS]
+    B --> C[Mozo entrega cuenta al cliente]
+    C --> D[Cliente selecciona método de pago]
+    D --> E{¿Pago en efectivo o digital?}
+    E --> F[Entrega efectivo al mozo o caja]
+    E --> G[Escanea código QR o transfiere usando Yape o Plin]
+    F --> H[POS registra pago en efectivo]
+    G --> H[POS confirma pago digital]
+    H --> I{¿Pago completado?}
+    I -->|No| D
+    I -->|Sí| J[Emitir comprobante]
+    J --> K[Enviar comprobante y registro a caja]
+    K --> L[Fin]
 ```
+
+
 
 
