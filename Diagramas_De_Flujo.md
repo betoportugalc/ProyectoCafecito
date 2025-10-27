@@ -1,26 +1,23 @@
-## Módulo 1: Pedido del Cliente
+## Módulo 1: Pedido del Cliente y Registro y Envio a Cocina
 
 ```mermaid
 flowchart TD
     A[Inicio] --> B[Cliente navega por la carta de productos]
     B --> C{¿Selecciona un producto?}
     C -->|No| B
-    C -->|Sí| D[Mozo registra producto en el sistema]
+    C -->|Sí| D[Agrega producto a su pedido]
     D --> E{¿Confirmar pedido?}
     E -->|No| B
-    E -->|Sí| F[Mozo envía pedido a cocina]
-    F --> G[Fin]
-```
-## Módulo 2: Preparación en Cocina
-```mermaid
-flowchart TD
-    A[Inicio] --> B[Muestra pedido en pantalla de cocina]
-    B --> C{¿Comenzar preparación?}
-    C -->|No| F[Notificar al mozo]
-    C -->|Sí| D[Preparar pedido]
-    D --> E{¿Pedido listo?}
-    E -->|Sí| F[Notificar al mozo]
-    F --> G[Fin]
+    E -->|Sí| F[Cliente comunica su pedido al mozo]
+    F --> G[Mozo recibe el pedido del cliente]
+    G --> H[Verifica disponibilidad de productos]
+    H --> I{¿Modificar pedido?}
+    I -->|Sí| J[Actualiza pedido en el sistema]
+    I -->|No| K[Confirma pedido]
+    J --> K
+    K --> L[Envía pedido confirmado a la cocina]
+    L --> M[Pedido visible en la pantalla de cocina]
+    M --> N[Fin]
 ```
 ## Modulo 3: Confirmación y Pago
 ```mermaid
