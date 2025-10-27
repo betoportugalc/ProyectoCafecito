@@ -4,7 +4,7 @@
 
 </center>
 
----------------------------------
+--------------
 
 ##  Descripción General
 
@@ -18,118 +18,159 @@ El proyecto combina el uso de **PSeInt** (para diseño lógico) y **Python** (pa
 
 El sistema se compone de **8 módulos principales**, diseñados de forma **modular e incremental**, lo que facilita su comprensión, mantenimiento y expansión futura.
 <br>
-
-### 1. Gestión De Pedidos
- Permite al cliente visualizar el menú, agregar productos, modificar pedidos y confirmar la orden.
-
-**Funciones principales:**
-- Mostrar menú y precios.
-- Agregar, modificar o eliminar ítems.
-- Confirmar y enviar pedido a cocina.
-
-**Beneficios:**
-- Menor tiempo de atención.  
-- Reducción de errores.  
-- Comunicación directa con cocina.
 <br>
 
-### 2. Gestión de Cocina
- Coordina la preparación de pedidos, controlando su estado en tiempo real.
+###  1.Pedido del Cliente
 
-**Funciones principales:**
-- Mostrar pedidos pendientes.  
-- Cambiar estado: *pendiente → en preparación → listo*.  
-- Notificar al mozo al terminar un pedido.
+###  Objetivo
+Permitir que el cliente explore la carta de productos del café, seleccione lo que desea consumir y genere un pedido inicial.
 
-**Beneficios:**
-- Flujo organizado de trabajo.  
-- Reducción de tiempos muertos.  
-- Mayor eficiencia del personal.
+###  Descripción del proceso
+- El cliente navega por el menú digital o físico del establecimiento.  
+- Selecciona los productos de su preferencia.  
+- Puede agregar, modificar o eliminar ítems antes de confirmar el pedido.  
+- Una vez conforme, el pedido queda registrado y visible para el mozo.
+
+###  Resultado final
+Se genera un pedido preliminar que será atendido por el mozo para su confirmación y envío a cocina.
+
+###  Relación con otros módulos
+Conecta con el **módulo del Mozo**, quien valida el pedido y lo remite al área de **Cocina**.
+
 <br>
 
-### 3. Gestión de Pagos
-Registra los pagos realizados, emite comprobantes y garantiza exactitud en el cobro.
+###  2.Registro y Envío del Pedido
 
-**Funciones principales:**
-- Calcular total del pedido.  
-- Aceptar efectivo, tarjeta o pagos digitales (Yape, Plin).  
-- Generar boleta o ticket electrónico.
+###  Objetivo
+Registrar formalmente el pedido del cliente y enviarlo al sistema de cocina para su preparación.
 
-**Beneficios:**
-- Cierre rápido de ventas.  
-- Control contable automatizado.  
-- Evita errores manuales.
+###  Descripción del proceso
+- El mozo recibe el pedido (oralmente o desde el sistema).  
+- Verifica la disponibilidad de los productos y registra cualquier modificación.  
+- Envía el pedido confirmado al sistema de cocina.  
+- Supervisa el estado del pedido hasta su entrega.
+
+###  Resultado final
+El pedido confirmado queda registrado en el sistema y visible en la pantalla de cocina.
+
+###  Relación con otros módulos
+Conecta con el **módulo de Cocina** y posteriormente con el de **Confirmación y Pago**.
+
 <br>
 
-### 4. Confirmación de Pedidos y Pagos
-Verifica que el pedido esté completo y el pago registrado correctamente.
+###  3.Preparación en Cocina
 
-**Funciones principales:**
-- Validar estado del pedido.  
-- Confirmar recepción del pago.  
-- Marcar pedido como completado.
+###  Objetivo
+Gestionar la preparación de los pedidos confirmados, mostrando las órdenes en cola de manera organizada y eficiente.
 
-**Beneficios:**
-- Garantiza exactitud.  
-- Evita duplicaciones.  
-- Mantiene trazabilidad.
+###  Descripción del proceso
+- El sistema de cocina recibe los pedidos enviados por los mozos.  
+- El personal inicia la preparación según el orden de llegada.  
+- Cuando un pedido está listo, se marca como “Finalizado”.  
+- Se notifica al mozo para la entrega al cliente.
+
+###  Resultado final
+Los pedidos se completan y quedan listos para ser entregados o servidos.
+
+###  Relación con otros módulos
+Conecta con el **Mozo** (para la entrega) y con el módulo de **Confirmación y Pago**.
+
 <br>
 
-### 5. Administración
-Centraliza el control de menú, precios, personal e inventario.
+###  4.Confirmación y Recepción de Pago
 
-**Funciones principales:**
-- Modificar productos y precios.  
-- Gestionar usuarios y roles.  
-- Controlar inventario y reportes.
+###  Objetivo
+Registrar la confirmación del pedido entregado y procesar el pago correspondiente.
 
-**Beneficios:**
-- Visión general del negocio.  
-- Control total del sistema.  
-- Mejora en la toma de decisiones.
+###  Descripción del proceso
+- El mozo confirma que el pedido ha sido entregado.  
+- Se genera la orden de pago con el detalle del consumo.  
+- El cliente elige el método de pago (efectivo, tarjeta, etc.).  
+- El pago es verificado y registrado en el sistema.
+
+###  Resultado final
+El pago del pedido queda confirmado y validado, cerrando el ciclo de venta.
+
+###  Relación con otros módulos
+Vinculado con el **módulo de Caja / Registro de Pagos** y **Gerencia** para control y reportes.
+
 <br>
 
-### 6. Soporte Técnico
-Garantiza el correcto funcionamiento del sistema y su mantenimiento.
+###  5.Gestión de Problemas
 
-**Funciones principales:**
-- Registro de incidencias.  
-- Diagnóstico y corrección de fallos.  
-- Actualizaciones periódicas.
+###  Objetivo
+Identificar, registrar y resolver incidentes operativos o fallas del sistema que puedan afectar el servicio.
 
-**Beneficios:**
-- Estabilidad del sistema.  
-- Soporte preventivo.  
-- Menos interrupciones operativas.
+###  Descripción del proceso
+- Se detecta un problema (error de pedido, falla técnica, etc.).  
+- El incidente se registra con nivel de prioridad.  
+- El responsable analiza la causa y aplica la solución.  
+- Se actualiza el estado del problema (pendiente, en revisión, resuelto).
+
+###  Resultado final
+Los problemas quedan documentados y controlados, garantizando la continuidad del servicio.
+
+###  Relación con otros módulos
+Puede conectarse con cualquier otro módulo (especialmente **Cocina**, **Mozo** o **Pagos**).
+
 <br>
 
-### 7. Gestión de Problemas
-Registra y analiza errores operativos o de diseño para mejorar el sistema.
+###  6.Caja / Registro de Pagos
 
-**Incluye:**
-- Errores funcionales (pedidos mal procesados).  
-- Fallas técnicas o de conexión.  
-- Fallas de diseño (interfaz o lógica).
+###  Objetivo
+Centralizar y registrar todos los pagos realizados, asegurando el control financiero diario.
 
-**Beneficios:**
-- Retroalimentación continua.  
-- Mantenimiento correctivo.  
-- Mejora de calidad del software.
+###  Descripción del proceso
+- El sistema recibe las confirmaciones de pago.  
+- Se registran los montos, métodos de pago y número de pedido.  
+- Se generan reportes diarios de ingresos.  
+- Los datos se envían al módulo de Gerencia.
+
+###  Resultado final
+Los pagos quedan consolidados en un registro contable y financiero.
+
+###  Relación con otros módulos
+Conecta con **Confirmación y Pago**, **Gerencia** y **Proveedores** (para control de gastos).
+
 <br>
 
-### 8. Gerencia
-Analiza datos de todos los módulos para decisiones estratégicas.
+###  7.Gerencia / Supervisión y Reportes
 
-**Funciones principales:**
-- Generar reportes de ventas y rendimiento.  
-- Evaluar tiempos de atención.  
-- Controlar productividad general.
+###  Objetivo
+Proporcionar a la administración una visión general del desempeño del café mediante reportes de ventas, productividad y eficiencia.
 
-**Beneficios:**
-- Control financiero.  
-- Mejora continua.  
-- Decisiones basadas en datos.
+###  Descripción del proceso
+- El sistema recopila información de los módulos de pedidos, pagos y caja.  
+- Genera reportes automáticos de ingresos, rotación y tiempos de atención.  
+- Permite visualizar alertas de incidencias o demoras.  
+- Exporta datos para análisis contable o decisiones gerenciales.
+
+###  Resultado final
+La gerencia obtiene información actualizada para mejorar la gestión y la toma de decisiones.
+
+###  Relación con otros módulos
+Conecta con **Caja**, **Proveedores** y **Gestión de Problemas**.
+
 <br>
+
+###  8.Gestión de Proveedores e Insumos
+
+###  Objetivo
+Controlar el abastecimiento de productos e insumos necesarios para la operación del café.
+
+###  Descripción del proceso
+- Se registran los proveedores y los productos ofrecidos.  
+- Se generan órdenes de compra según la demanda.  
+- Se actualiza el inventario al recibir los suministros.  
+- Se notifican faltantes o retrasos.
+
+###  Resultado final
+El sistema mantiene un control eficiente del stock e insumos, garantizando la continuidad del servicio.
+
+###  Relación con otros módulos
+Vinculado con **Cocina** (por uso de insumos) y **Gerencia** (por control de gastos y reposiciones).
+<br>
+
 
 ## Futuras Implementaciones
 
@@ -146,7 +187,7 @@ Analiza datos de todos los módulos para decisiones estratégicas.
 **- App móvil (versión futura):**  
    Pedidos y pagos desde dispositivos móviles.
 
----
+<br>
 
 ## Metodologia
 
@@ -157,7 +198,7 @@ Se empleó una **metodología incremental y modular**, desarrollando el sistema 
 3. **Integración de módulos y pruebas**  
 4. **Documentación y mejora continua**
 
----
+<br>
 
 ## Herramientas Utilizadas
 
@@ -174,5 +215,4 @@ Se empleó una **metodología incremental y modular**, desarrollando el sistema 
 
 El proyecto **CAFECITO** representa una solución tecnológica moderna y escalable para la gestión integral de cafés. 
 Su enfoque modular permite **eficiencia operativa, reducción de errores y mayor control administrativo**, además de sentar las bases para una futura **plataforma completa de gestión gastronómica**.
-
-
+<br>
