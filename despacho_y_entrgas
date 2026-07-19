@@ -1,4 +1,4 @@
-def despacho_y_entrgas():
+def despacho_y_entregas():
     
     print("-"*40)
     print("MODULO DE DESPACHO Y ENTREGAS".center(40, "-"))
